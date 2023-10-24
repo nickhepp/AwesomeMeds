@@ -10,9 +10,11 @@ namespace AwesomeMeds.Clients.DataAccessLayer
     public interface IClientDataConnection
     {
 
+        AwesomeMeds.Clients.DataContracts.Client GetClientByClientID(Guid clientID);
+
         void DeleteUnconfirmedPendingReservations();
 
         List<AppointmentSlot> GetUnreservedAppointmentSlots();
-
+        void ReserveAppointmentSlot(Guid clientID, AppointmentSlot appointmentSlot);
     }
 }

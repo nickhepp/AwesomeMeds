@@ -17,6 +17,7 @@
     [ReservationConfirmedByUTC] DATETIME,
 
     CONSTRAINT PK_PendingReservationAppointmentSlot PRIMARY KEY ([ProviderID], [Year], [Month], [Day], [Hour], [QuarterHourSegment]),
-    CONSTRAINT FK_ClientID FOREIGN KEY ([ClientID]) REFERENCES Client.Client([ClientID]),
-    CONSTRAINT FK_ProviderID FOREIGN KEY ([ProviderID]) REFERENCES Provider.AppointmentSlot([ProviderID])
+    CONSTRAINT FK_PendingReservationAppointmentSlot_ClientID FOREIGN KEY ([ClientID]) REFERENCES Client.Client([ClientID]),
+    CONSTRAINT FK_PendingReservationAppointmentSlot_ProviderID_Year_Month_Day_Hour_QuarterHourSegment FOREIGN KEY ([ProviderID], [Year], [Month], [Day], [Hour], [QuarterHourSegment])
+        REFERENCES [Provider].[AppointmentSlot] ([ProviderID], [Year], [Month], [Day], [Hour], [QuarterHourSegment])
 );

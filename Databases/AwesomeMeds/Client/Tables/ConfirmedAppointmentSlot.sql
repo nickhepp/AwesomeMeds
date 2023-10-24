@@ -18,7 +18,8 @@
     -- the time the reservation was confirmed
     [ReservationConfirmedUTC] DATETIME,
 
-    CONSTRAINT PK_Confirmed_PendingReservationAppointmentSlot PRIMARY KEY ([ProviderID], [Year], [Month], [Day], [Hour], [QuarterHourSegment]),
-    CONSTRAINT FK_Confirmed_ClientID FOREIGN KEY ([ClientID]) REFERENCES Client.Client([ClientID]),
-    CONSTRAINT FK_Confirmed_ProviderID FOREIGN KEY ([ProviderID]) REFERENCES Provider.AppointmentSlot([ProviderID])
+    CONSTRAINT PK_ConfirmedReservationAppointmentSlot PRIMARY KEY ([ProviderID], [Year], [Month], [Day], [Hour], [QuarterHourSegment]),
+    CONSTRAINT FK_ConfirmedReservationAppointmentSlot_ClientID FOREIGN KEY ([ClientID]) REFERENCES Client.Client([ClientID]),
+    CONSTRAINT FK_ConfirmedPendingReservationAppointmentSlot_ProviderID_Year_Month_Day_Hour_QuarterHourSegment FOREIGN KEY ([ProviderID], [Year], [Month], [Day], [Hour], [QuarterHourSegment])
+        REFERENCES [Client].[PendingReservationAppointmentSlot] ([ProviderID], [Year], [Month], [Day], [Hour], [QuarterHourSegment])
 );

@@ -86,6 +86,7 @@
     <Build Include="Client\Tables\ConfirmedAppointmentSlot.sql" />
     <Build Include="Client\Stored Procedures\GetUnreservedAppointmentSlots.sql" />
     <Build Include="Client\Stored Procedures\DeleteUnconfirmedPendingReservations.sql" />
+    <Build Include="Client\Stored Procedures\GetClientByClientID.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AwesomeMeds.publish.xml" />

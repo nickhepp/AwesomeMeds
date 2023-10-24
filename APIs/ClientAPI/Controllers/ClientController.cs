@@ -1,3 +1,8 @@
+using AwesomeMeds.Clients.BusinessLayer.Providers;
+using AwesomeMeds.Clients.DataAccessLayer;
+using AwesomeMeds.Scheduling.Business;
+using AwesomeMeds.Scheduling.DataContracts;
+using AwesomeMeds.Scheduling.DataContracts.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClientAPI.Controllers
@@ -6,28 +11,45 @@ namespace ClientAPI.Controllers
     [Route("[controller]")]
     public class ClientController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
 
         private readonly ILogger<ClientController> _logger;
+        private readonly IAvailableAppointmentSlotProvider _availableAppointmentSlotProvider;
 
         public ClientController(ILogger<ClientController> logger)
         {
             _logger = logger;
+            // TODO: inject this with DI
+            _availableAppointmentSlotProvider = new AvailableAppointmentSlotProvider(new ClientDataConnection(), new DateTimeProvider());
         }
 
-        [HttpGet(Name = "appointment-slots/available")]
-        public IEnumerable<WeatherForecast> Get()
+        // TODO: Authentication
+
+        [HttpGet(Name = "appointment-slots")]
+        public IActionResult GetAvailableAppointmentSlots()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            try
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+                return new OkObjectResult(_availableAppointmentSlotProvider.GetAvailableAppointmentSlots());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
+
+        [HttpPost(Name = "appointment-slots/reserve")]
+        public IActionResult ReserveAvailableAppointmentSlots([FromBody] ReserveAppointmentSlotRequest reserveRequest)
+        {
+            try
+            {
+                return new OkObjectResult(_availableAppointmentSlotProvider.GetAvailableAppointmentSlots());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+
     }
 }

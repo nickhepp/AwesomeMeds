@@ -21,6 +21,8 @@ namespace ProviderAPI.Controllers
             _addProviderAvailableTimeWindowWorkflow = new AddProviderAvailableTimeWindowWorkflow(new ProviderDataConnection());
         }
 
+        // TODO: Authentication
+
         [HttpPut("appointment-slots")]
         public StatusCodeResult AddApointmentTimeWindows([FromBody] ProviderAvailableTimeWindow timeWindow)
         {
@@ -34,22 +36,6 @@ namespace ProviderAPI.Controllers
                 // TODO: logging
                 return BadRequest();
             }
-
-
-            
         }
-
-
-        //[HttpGet(Name = "GetWeatherForecast")]
-        //public IEnumerable<WeatherForecast> Get()
-        //{
-        //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        //    {
-        //        Date = DateTime.Now.AddDays(index),
-        //        TemperatureC = Random.Shared.Next(-20, 55),
-        //        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        //    })
-        //    .ToArray();
-        //}
     }
 }

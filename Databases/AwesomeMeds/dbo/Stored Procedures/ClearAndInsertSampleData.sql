@@ -5,6 +5,8 @@ BEGIN
     SET NOCOUNT ON;
 
     -- Do all the deletes first
+    DELETE FROM [Client].[ConfirmedAppointmentSlot];
+    DELETE FROM [Client].[PendingReservationAppointmentSlot];
     DELETE FROM [Provider].[AppointmentSlot];
     DELETE FROM [Provider].[Provider];
     DELETE FROM [Client].[Client];

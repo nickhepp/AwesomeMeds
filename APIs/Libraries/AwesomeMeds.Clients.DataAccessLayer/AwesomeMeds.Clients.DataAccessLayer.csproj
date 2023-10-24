@@ -11,8 +11,9 @@
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
 	</ItemGroup>
 
-	<ItemGroup>
-    <ProjectReference Include="..\AwesomeMeds.Scheduling.DataContracts\AwesomeMeds.Scheduling.DataContracts.csproj" />
+  <ItemGroup>
+	  <ProjectReference Include="..\AwesomeMeds.Clients.DataContracts\AwesomeMeds.Clients.DataContracts.csproj" />
+	  <ProjectReference Include="..\AwesomeMeds.Scheduling.DataContracts\AwesomeMeds.Scheduling.DataContracts.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AwesomeMeds.Clients.DataAccessLayer\AwesomeMeds.Clients.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\AwesomeMeds.Scheduling.Business\AwesomeMeds.Scheduling.Business.csproj" />
     <ProjectReference Include="..\AwesomeMeds.Scheduling.DataContracts\AwesomeMeds.Scheduling.DataContracts.csproj" />
   </ItemGroup>
 
