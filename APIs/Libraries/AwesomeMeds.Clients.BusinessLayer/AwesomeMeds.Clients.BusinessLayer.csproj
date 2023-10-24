@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AwesomeMeds.Clients.DataAccessLayer\AwesomeMeds.Clients.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\AwesomeMeds.Scheduling.DataContracts\AwesomeMeds.Scheduling.DataContracts.csproj" />
+  </ItemGroup>
+
 </Project>

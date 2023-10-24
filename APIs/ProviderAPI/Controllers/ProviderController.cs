@@ -17,15 +17,26 @@ namespace ProviderAPI.Controllers
         {
             _logger = logger;
 
-
             // TODO: make these provided via dependency injection
             _addProviderAvailableTimeWindowWorkflow = new AddProviderAvailableTimeWindowWorkflow(new ProviderDataConnection());
         }
 
-        [HttpPut("provider/appointment-slots")]
+        [HttpPut("appointment-slots")]
         public StatusCodeResult AddApointmentTimeWindows([FromBody] ProviderAvailableTimeWindow timeWindow)
         {
-            return Ok();
+            try
+            {
+                _addProviderAvailableTimeWindowWorkflow.AddProviderAvailableTimeWindow(timeWindow);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // TODO: logging
+                return BadRequest();
+            }
+
+
+            
         }
 
 

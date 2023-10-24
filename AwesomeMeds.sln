@@ -3,29 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProviderAPI", "ProviderAPI.csproj", "{8CD41481-B4E9-4D18-A1FF-BEC3E1BF4592}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{AF4518C0-E0CF-4E81-A016-90049AA3D7B4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{AF4518C0-E0CF-4E81-A016-90049AA3D7B4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{4D31A1AD-57DB-4BA0-AE41-FD4DDF225C74}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{276FA469-E3F0-406B-9867-B9E89B190B41}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Providers.BusinessLayer", "..\Libraries\AwesomeMeds.Providers.BusinessLayer\AwesomeMeds.Providers.BusinessLayer.csproj", "{F236857C-34EE-4C64-B1EF-E4B15CE257B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Providers.BusinessLayer", "APIs\Libraries\AwesomeMeds.Providers.BusinessLayer\AwesomeMeds.Providers.BusinessLayer.csproj", "{F236857C-34EE-4C64-B1EF-E4B15CE257B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Providers.BusinessLayer.Test", "..\Libraries\AwesomeMeds.Providers.BusinessLayer.Test\AwesomeMeds.Providers.BusinessLayer.Test.csproj", "{C3354977-F192-4DB7-AA93-921297784DAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Providers.BusinessLayer.Test", "APIs\Libraries\AwesomeMeds.Providers.BusinessLayer.Test\AwesomeMeds.Providers.BusinessLayer.Test.csproj", "{C3354977-F192-4DB7-AA93-921297784DAB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Providers.DataAccessLayer", "..\Libraries\AwesomeMeds.Providers.DataAccessLayer\AwesomeMeds.Providers.DataAccessLayer.csproj", "{F8B6CC63-9469-493B-A797-8E9167E87A01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Providers.DataAccessLayer", "APIs\Libraries\AwesomeMeds.Providers.DataAccessLayer\AwesomeMeds.Providers.DataAccessLayer.csproj", "{F8B6CC63-9469-493B-A797-8E9167E87A01}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Clients.BusinessLayer", "..\Libraries\AwesomeMeds.Clients.BusinessLayer\AwesomeMeds.Clients.BusinessLayer.csproj", "{2A95D67C-B8A9-4B22-8991-9004752BB2E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Clients.BusinessLayer", "APIs\Libraries\AwesomeMeds.Clients.BusinessLayer\AwesomeMeds.Clients.BusinessLayer.csproj", "{2A95D67C-B8A9-4B22-8991-9004752BB2E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Clients.BusinessLayer.Test", "..\Libraries\AwesomeMeds.Clients.BusinessLayer.Test\AwesomeMeds.Clients.BusinessLayer.Test.csproj", "{E4AD8A24-946F-43B5-A23B-70EB57D0789A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Clients.BusinessLayer.Test", "APIs\Libraries\AwesomeMeds.Clients.BusinessLayer.Test\AwesomeMeds.Clients.BusinessLayer.Test.csproj", "{E4AD8A24-946F-43B5-A23B-70EB57D0789A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Clients.DataAccessLayer", "..\Libraries\AwesomeMeds.Clients.DataAccessLayer\AwesomeMeds.Clients.DataAccessLayer.csproj", "{0E124893-FEF0-475B-AB3A-80F2241AB82E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Clients.DataAccessLayer", "APIs\Libraries\AwesomeMeds.Clients.DataAccessLayer\AwesomeMeds.Clients.DataAccessLayer.csproj", "{0E124893-FEF0-475B-AB3A-80F2241AB82E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Scheduling.Business", "..\Libraries\AwesomeMeds.Scheduling.Business\AwesomeMeds.Scheduling.Business.csproj", "{5F6293E6-FF9C-479D-97D4-2B6B1F3EF0CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Scheduling.Business", "APIs\Libraries\AwesomeMeds.Scheduling.Business\AwesomeMeds.Scheduling.Business.csproj", "{5F6293E6-FF9C-479D-97D4-2B6B1F3EF0CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Scheduling.DataContracts", "..\Libraries\AwesomeMeds.Scheduling.DataContracts\AwesomeMeds.Scheduling.DataContracts.csproj", "{2A219AE3-2B74-407C-9CD6-01B454B4874A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Scheduling.DataContracts", "APIs\Libraries\AwesomeMeds.Scheduling.DataContracts\AwesomeMeds.Scheduling.DataContracts.csproj", "{2A219AE3-2B74-407C-9CD6-01B454B4874A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{02A147E3-8D69-4F6D-82EB-A470968588B7}"
 EndProject
@@ -33,13 +31,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{136E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scheduling", "Scheduling", "{69170FDC-2995-4C10-8EDC-C54B4F2573A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Clients.DataContracts", "..\Libraries\AwesomeMeds.Clients.DataContracts\AwesomeMeds.Clients.DataContracts.csproj", "{88686955-4F63-4352-9C0F-AC1A709E7ECA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Clients.DataContracts", "APIs\Libraries\AwesomeMeds.Clients.DataContracts\AwesomeMeds.Clients.DataContracts.csproj", "{88686955-4F63-4352-9C0F-AC1A709E7ECA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Providers.DataContracts", "..\Libraries\AwesomeMeds.Providers.DataContracts\AwesomeMeds.Providers.DataContracts.csproj", "{243CD66F-423C-452E-BA80-30C31F65DE08}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AwesomeMeds", "..\Databases\AwesomeMeds\AwesomeMeds.sqlproj", "{700E8A3A-25D1-433B-9D14-C892E4410C72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeMeds.Providers.DataContracts", "APIs\Libraries\AwesomeMeds.Providers.DataContracts\AwesomeMeds.Providers.DataContracts.csproj", "{243CD66F-423C-452E-BA80-30C31F65DE08}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{D6A4E382-40A2-417D-8D86-3677C29281C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProviderAPI", "APIs\ProviderAPI\ProviderAPI.csproj", "{D4F8A9E7-7370-41A2-88DD-0C1A74B18DB0}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AwesomeMeds", "Databases\AwesomeMeds\AwesomeMeds.sqlproj", "{700E8A3A-25D1-433B-9D14-C892E4410C72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientAPI", "APIs\ClientAPI\ClientAPI.csproj", "{8B48D2E2-C7C0-4E34-8DAF-701F3C74466B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +49,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8CD41481-B4E9-4D18-A1FF-BEC3E1BF4592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CD41481-B4E9-4D18-A1FF-BEC3E1BF4592}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CD41481-B4E9-4D18-A1FF-BEC3E1BF4592}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CD41481-B4E9-4D18-A1FF-BEC3E1BF4592}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F236857C-34EE-4C64-B1EF-E4B15CE257B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F236857C-34EE-4C64-B1EF-E4B15CE257B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F236857C-34EE-4C64-B1EF-E4B15CE257B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -91,18 +89,25 @@ Global
 		{243CD66F-423C-452E-BA80-30C31F65DE08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{243CD66F-423C-452E-BA80-30C31F65DE08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{243CD66F-423C-452E-BA80-30C31F65DE08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4F8A9E7-7370-41A2-88DD-0C1A74B18DB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4F8A9E7-7370-41A2-88DD-0C1A74B18DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4F8A9E7-7370-41A2-88DD-0C1A74B18DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4F8A9E7-7370-41A2-88DD-0C1A74B18DB0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{700E8A3A-25D1-433B-9D14-C892E4410C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{700E8A3A-25D1-433B-9D14-C892E4410C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{700E8A3A-25D1-433B-9D14-C892E4410C72}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{700E8A3A-25D1-433B-9D14-C892E4410C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{700E8A3A-25D1-433B-9D14-C892E4410C72}.Release|Any CPU.Build.0 = Release|Any CPU
 		{700E8A3A-25D1-433B-9D14-C892E4410C72}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8B48D2E2-C7C0-4E34-8DAF-701F3C74466B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B48D2E2-C7C0-4E34-8DAF-701F3C74466B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B48D2E2-C7C0-4E34-8DAF-701F3C74466B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B48D2E2-C7C0-4E34-8DAF-701F3C74466B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8CD41481-B4E9-4D18-A1FF-BEC3E1BF4592} = {AF4518C0-E0CF-4E81-A016-90049AA3D7B4}
 		{F236857C-34EE-4C64-B1EF-E4B15CE257B1} = {02A147E3-8D69-4F6D-82EB-A470968588B7}
 		{C3354977-F192-4DB7-AA93-921297784DAB} = {276FA469-E3F0-406B-9867-B9E89B190B41}
 		{F8B6CC63-9469-493B-A797-8E9167E87A01} = {02A147E3-8D69-4F6D-82EB-A470968588B7}
@@ -116,7 +121,9 @@ Global
 		{69170FDC-2995-4C10-8EDC-C54B4F2573A5} = {4D31A1AD-57DB-4BA0-AE41-FD4DDF225C74}
 		{88686955-4F63-4352-9C0F-AC1A709E7ECA} = {136E5AB4-D927-467A-AACC-71FB0A60C06E}
 		{243CD66F-423C-452E-BA80-30C31F65DE08} = {02A147E3-8D69-4F6D-82EB-A470968588B7}
+		{D4F8A9E7-7370-41A2-88DD-0C1A74B18DB0} = {AF4518C0-E0CF-4E81-A016-90049AA3D7B4}
 		{700E8A3A-25D1-433B-9D14-C892E4410C72} = {D6A4E382-40A2-417D-8D86-3677C29281C8}
+		{8B48D2E2-C7C0-4E34-8DAF-701F3C74466B} = {AF4518C0-E0CF-4E81-A016-90049AA3D7B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B678986B-7456-4C2E-BB67-38FA4FF4B652}

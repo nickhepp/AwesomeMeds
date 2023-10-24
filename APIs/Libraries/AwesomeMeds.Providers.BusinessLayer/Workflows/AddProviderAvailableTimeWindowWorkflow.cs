@@ -40,11 +40,10 @@ namespace AwesomeMeds.Providers.BusinessLayer.Workflows
                 throw new ArgumentException($"{MaxTimeWindowInHoursExceededErrorMessage} Provider with ID '{timeWindow.ProviderId}' has invalid dates.");
             }
 
-
             // make sure the time window doesnt interfere with an existing time window
             List<AppointmentSlot> nextAppointmentSlots = new List<AppointmentSlot>();
             AppointmentSlot currentApptSlot = timeWindow.StartAppointmentSlot;
-            while (currentApptSlot.GetDateTimeUTC() <= timeWindow.EndAppointmentSlot.GetDateTimeUTC())
+            while (currentApptSlot.GetDateTimeUTC() < timeWindow.EndAppointmentSlot.GetDateTimeUTC())
             {
                 nextAppointmentSlots.Add(currentApptSlot);
                 currentApptSlot = new AppointmentSlot(currentApptSlot.GetDateTimeUTC().AddMinutes(15));

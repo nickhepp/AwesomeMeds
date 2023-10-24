@@ -29,9 +29,11 @@ namespace AwesomeMeds.Clients.BusinessLayer.Test.Workflows
             // we have 1 known provider that we accept as good
             _mockProviderDataConnection.Setup(providerDataConn => providerDataConn.GetProviderByGuid(_validProviderID)).Returns(new Provider { ProviderID = _validProviderID });
 
+            // start off with returning an empty list of existing times
+            _mockProviderDataConnection.Setup(providerDataConn => providerDataConn.GetProviderAppointmentSlots(_validProviderID)).Returns(new List<AppointmentSlot>());
+
             _testObject = new AddProviderAvailableTimeWindowWorkflow(_mockProviderDataConnection.Object);
         }
-
 
         private void AssertExceptionContainingMessage<TException>(Action action, string exceptionMessageStartsWith, string errorMessage)
             where TException : Exception
@@ -107,8 +109,27 @@ namespace AwesomeMeds.Clients.BusinessLayer.Test.Workflows
                 "An exception should be thrown if the end time is equal or less than the start time.");
         }
 
+        [TestMethod]
+        public void AddProviderAvailableTimeWindow_AppointmentSlotsConflict_ExceptionThrownWithProperErrorMessage()
+        {
+            // arrange
+            AppointmentSlot validStartAppointmentSlot = new AppointmentSlot { Day = 1, Month = 1, Year = 2020, Hour = 0, QuarterHourSegment = 0 };
+            AppointmentSlot validEndAppointmentSlot = new AppointmentSlot(validStartAppointmentSlot.GetDateTimeUTC().AddHours(4));
+            ProviderAvailableTimeWindow timeWindow = new ProviderAvailableTimeWindow
+            {
+                StartAppointmentSlot = validStartAppointmentSlot,
+                EndAppointmentSlot = validEndAppointmentSlot,
+                ProviderId = _validProviderID,
+            };
 
+            List<AppointmentSlot> priorAppointmentSlots = new List<AppointmentSlot> { new AppointmentSlot(validStartAppointmentSlot.GetDateTimeUTC().AddMinutes(30)) };
+            _mockProviderDataConnection.Setup(providerDataConn => providerDataConn.GetProviderAppointmentSlots(_validProviderID)).Returns(priorAppointmentSlots);
 
+            // act, assert
+            AssertExceptionContainingMessage<ArgumentException>(() => _testObject.AddProviderAvailableTimeWindow(timeWindow),
+                AddProviderAvailableTimeWindowWorkflow.ConflictingProviderAppointmentSlotsErrorMessage,
+                "An exception should be thrown if the end time is equal or less than the start time.");
+        }
 
     }
 }

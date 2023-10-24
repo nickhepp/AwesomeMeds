@@ -32,6 +32,18 @@
             return new DateTime(Year, Month, Day, Hour, minute: (int)QuarterHourSegment * 15, second:0, DateTimeKind.Utc);
         }
 
+        public override bool Equals(object? other)
+        {
+            if (other != null && other is AppointmentSlot otherApptSlot)
+            {
+                return this.GetDateTimeUTC() == otherApptSlot.GetDateTimeUTC();
+            }
+            return false;
+        }
 
+        public override int GetHashCode()
+        {
+            return GetDateTimeUTC().GetHashCode();
+        }
     }
 }

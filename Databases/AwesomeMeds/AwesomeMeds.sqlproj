@@ -78,6 +78,14 @@
     <Build Include="Provider\Tables\Provider.sql" />
     <Build Include="Provider\Stored Procedures\GetProviderByProviderID.sql" />
     <Build Include="dbo\Stored Procedures\ClearAndInsertSampleData.sql" />
+    <Build Include="Provider\Tables\AppointmentSlot.sql" />
+    <Build Include="Scheduling\Tables\QuarterHourSegmentLookup.sql" />
+    <Build Include="Provider\Stored Procedures\InsertProviderAppointmentSlot.sql" />
+    <Build Include="Provider\Stored Procedures\GetAppointmentSlotsByProviderID.sql" />
+    <Build Include="Client\Tables\PendingReservationAppointmentSlot.sql" />
+    <Build Include="Client\Tables\ConfirmedAppointmentSlot.sql" />
+    <Build Include="Client\Stored Procedures\GetUnreservedAppointmentSlots.sql" />
+    <Build Include="Client\Stored Procedures\DeleteUnconfirmedPendingReservations.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AwesomeMeds.publish.xml" />

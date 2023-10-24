@@ -4,15 +4,12 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Delete all records from Appointments table
-    --DELETE FROM Appointments;
-
-    -- Reset identity seed
-    --DBCC CHECKIDENT ('Appointments', RESEED, 0);
-
-    -- Delete all records from Client.Client and Provider.Provider tables
-    DELETE FROM [Client].[Client];
+    -- Do all the deletes first
+    DELETE FROM [Provider].[AppointmentSlot];
     DELETE FROM [Provider].[Provider];
+    DELETE FROM [Client].[Client];
+    DELETE FROM [Scheduling].[QuarterHourSegmentLookup];
+
 
     -- Insert sample clients with easy-to-read GUIDs
     INSERT INTO Client.Client (ClientID)
@@ -25,6 +22,14 @@ BEGIN
     VALUES
         ('33333333-3333-3333-3333-333333333333'),
         ('44444444-4444-4444-4444-444444444444');
+
+    -- Seed the lookup data
+    INSERT INTO [Scheduling].[QuarterHourSegmentLookup] ([SegmentID], [SegmentDescription])
+    VALUES
+        (0, 'First Quarter'),
+        (1, 'Second Quarter'),
+        (2, 'Third Quarter'),
+        (3, 'Fourth Quarter');
 
     PRINT 'Sample data inserted successfully.';
 END;
