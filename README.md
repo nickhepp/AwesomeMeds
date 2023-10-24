@@ -72,10 +72,13 @@ Here is how those states are represented in the database:
 * `AwesomeMeds.Providers.BusinessLayer` - Business level workflows to facilitate Provider User Stories
 * `AwesomeMeds.Providers.BusinessLayer.Test` - Tests for `AwesomeMeds.Providers.BusinessLayer`
 * `AwesomeMeds.Providers.DataAccessLayer` - Abstracted access to Provider data stores (the database)
+* `AwesomeMeds.Providers.DataContracts` - DTOs for Provider operations
 * `AwesomeMeds.Clients.BusinessLayer` - Business level workflows to facilitate Client User Stories
 * `AwesomeMeds.Clients.BusinessLayer.Test` - Tests for `AwesomeMeds.Clients.BusinessLayer`
 * `AwesomeMeds.Clients.DataAccessLayer` - Abstracted access to Client data stores (the database)
-* `AwesomeMeds.Workflows`
+* `AwesomeMeds.Clients.DataContracts` - DTOs for Client operations
+* `AwesomeMeds.Scheduling.Business` - Common components for other business level projects
+* `AwesomeMeds.Scheduling.DataContracts` - Common scheduling DTOs
 
 # Initialization
 Follow these steps to initialize the environment.
