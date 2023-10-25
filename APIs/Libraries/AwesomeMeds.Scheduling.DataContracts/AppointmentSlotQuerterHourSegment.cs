@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace AwesomeMeds.Scheduling.DataContracts
 {
+
+    /// <summary>
+    /// The breakdown of an hour into specific segments.
+    /// </summary>
     public enum AppointmentSlotQuerterHourSegment
     {
 

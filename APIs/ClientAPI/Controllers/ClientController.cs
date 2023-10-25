@@ -21,7 +21,7 @@ namespace ClientAPI.Controllers
         public ClientController(ILogger<ClientController> logger)
         {
             _logger = logger;
-            // TODO: inject this with DI
+            // TODO: inject these classes with DI
             IClientDataConnection clientDataConnection = new ClientDataConnection();
             IDateTimeProvider dateTimeProvider = new DateTimeProvider();
             _availableAppointmentSlotProvider = new AvailableAppointmentSlotProvider(clientDataConnection, dateTimeProvider);

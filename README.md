@@ -259,8 +259,10 @@ Verfiy: Execute this SQL `SELECT * FROM [AwesomeMeds].[Client].[ConfirmedAppoint
 |33333333-3333-3333-3333-333333333333 |2024|1    |1  |8   |0                 |11111111-1111-1111-1111-111111111111|2023-10-25 04:35:27.210|2023-10-25 05:05:27.210  |2023-10-25 04:49:14.150|
 
 # Future Considerations
-Here are changes you would want to make to this system to allow it to operate smoothly in the future.
+Here are changes you would want to make to this system to allow it to operate smoothly in the future:
 - Archive old data from `[Provider].[AppointmentSlot]`, `[Client].[PendingReservationAppointmentSlot]`, and `[Client].[ConfirmedAppointmentSlot]` tables so the SQL database is not bogged down looking at older data.
+- Providers would soon need a way to augment their schedules.
+- Clients would need need a way to cancel their appointments.
 
 # Note about Exception Handling
 For expediency I am throwing exceptions and wrapping all the top level API calls in try/catch blocks.  Normally we could avoid exceptions for many circumstances (eg. bad data coming in from the API) that can be covered with branching logic and proper defensive coding, and provide more elegant loging and reporting to provide feedback to the system maintainers and the applications that send requests to the APIs. But for this exercise with time considerations, we will throw exceptions at any level of the code and catch them in the controllers to be logged and avoid leaking sensitive details to the applications which could increase an attacker's ability to gain knowledge about the system.

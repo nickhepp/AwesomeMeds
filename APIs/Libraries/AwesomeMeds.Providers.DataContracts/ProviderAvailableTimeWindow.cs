@@ -15,8 +15,14 @@ namespace AwesomeMeds.Providers.DataContracts
 
         public Guid ProviderId { get; set; }
 
+        /// <summary>
+        /// The inclusive start of the appointment time window.
+        /// </summary>
         public AppointmentSlot StartAppointmentSlot {  get; set; }
 
+        /// <summary>
+        /// The exclusive end (this appt slot not included) of the appointment time window.
+        /// </summary>
         public AppointmentSlot EndAppointmentSlot { get; set; }
 
     }

@@ -9,7 +9,11 @@ namespace AwesomeMeds.Clients.BusinessLayer.Workflows
 {
     public interface IReserveAvailableAppointmentSlotWorkflow
     {
-
+        /// <summary>
+        /// Reserves the given appt slot for the client.
+        /// </summary>
+        /// <param name="clientID"></param>
+        /// <param name="appointment"></param>
         void ReserveAvailableAppointmentSlot(Guid clientID, AppointmentSlot appointment);
 
     }
