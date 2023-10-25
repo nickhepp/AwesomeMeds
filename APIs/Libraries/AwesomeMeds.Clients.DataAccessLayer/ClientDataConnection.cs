@@ -1,4 +1,5 @@
-﻿using AwesomeMeds.Scheduling.DataContracts;
+﻿using AwesomeMeds.Clients.DataContracts;
+using AwesomeMeds.Scheduling.DataContracts;
 using Dapper;
 using System.Data;
 using System.Data.SqlClient;
@@ -48,5 +49,49 @@ namespace AwesomeMeds.Clients.DataAccessLayer
             }
             return unreservedApptSlots;
         }
+
+        public void ReserveAppointmentSlot(Guid clientID, AppointmentSlot appointmentSlot)
+        {
+            using (IDbConnection dbConnection = new SqlConnection(_providerConnectionString))
+            {
+                // Define parameters for the stored procedure
+                DateTime dt = DateTime.UtcNow;
+                var parameters = new
+                {
+                    Year = appointmentSlot.Year, // Replace with your desired values
+                    Month = appointmentSlot.Month,
+                    Day = appointmentSlot.Day,
+                    Hour = appointmentSlot.Hour,
+                    QuarterHourSegment = appointmentSlot.QuarterHourSegment,
+                    ClientID = clientID,
+                    ReservationCreatedUTC = dt,
+                    ReservationConfirmedByUTC = dt.AddMinutes(ClientConstants.MaxTimeToConfirmReservationInMinutes)
+                };
+
+                dbConnection.Execute("[Client].[InsertPendingReservationWithFirstAvailableProvider]", parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public bool ConfirmUnreservedAppointmentSlot(Guid clientID, AppointmentSlot appointmentSlot, DateTime dateTime)
+        {
+            bool confirmed = false;
+            using (IDbConnection dbConnection = new SqlConnection(_providerConnectionString))
+            {
+                var parameters = new
+                {
+                    ClientID = clientID,
+                    ConfirmationDateTime = dateTime, 
+                    Year = appointmentSlot.Year,
+                    Month = appointmentSlot.Month,
+                    Day = appointmentSlot.Day,
+                    Hour = appointmentSlot.Hour,
+                    QuarterHourSegment = appointmentSlot.QuarterHourSegment
+                };
+                int rowAddedVal = dbConnection.QuerySingle<int>("[Client].[ConfirmPendingReservationAppointmentSlot]", parameters, commandType: CommandType.StoredProcedure);
+                confirmed = (rowAddedVal == 1);
+            }
+            return confirmed;
+        }
+
     }
 }

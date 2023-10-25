@@ -16,5 +16,6 @@ namespace AwesomeMeds.Clients.DataAccessLayer
 
         List<AppointmentSlot> GetUnreservedAppointmentSlots();
         void ReserveAppointmentSlot(Guid clientID, AppointmentSlot appointmentSlot);
+        bool ConfirmUnreservedAppointmentSlot(Guid clientID, AppointmentSlot appointmentSlot, DateTime dateTime);
     }
 }

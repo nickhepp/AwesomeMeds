@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AwesomeMeds.Scheduling.DataContracts.Requests
 {
-    public class ReserveAppointmentSlotRequest
+    public class AppointmentSlotRequest
     {
 
         public Guid ClientID { get; set; }  

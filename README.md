@@ -19,7 +19,9 @@ A ficticious backend for a scheduling system that services both Providers and Cl
 
 # System Design
 
-The system is comprised of one or more applications (website, phoneapp, etc.) that access the bakend APIs.  The bulk of the calendar functionality and business logic is performed in the backend APIs.  Two APIs (ClientAPI & ProviderAPI) run to increase the resiliency of an error/outage in one API doesn't prohibit the proper operation of the other use cases.  For example, if the ProviderAPI suffers an outage or bug the Provider User Stories won't function.  With a separate ClientAPI, it's more likely the Client User Stories can still operate.
+The system consists of one or more applications, including websites and mobile apps, that interact with backend APIs. The majority of calendar functionality and business logic is centralized within the backend APIs. To ensure resiliency, the system employs two distinct APIs: ClientAPI and ProviderAPI.
+
+This dual-API approach is designed to mitigate the impact of errors or outages. If one API, such as ProviderAPI, experiences an outage or a bug, the functionality related to provider user stories may be temporarily affected. However, the separate ClientAPI allows the client user stories to continue functioning independently.
 
 ```mermaid
 graph LR
@@ -44,8 +46,8 @@ graph LR
 An ACID compliant database, like PostgreSQL, will allow for the intercommunication between the different actors and their comingled User Stories.
 
 # Languages Chosen
-- .NET for APIs --> it's what I have the most experience in and currently used by HenryMeds
-- SQL Server for Database --> it's what I have the most experience in and similar to PostgreSQL since SQL Server is also an RDBMS
+- .NET for APIs
+- SQL Server for Database
 
 # AppointmentSlot State Diagram
 Here is the lifecycle of an appointment slot (a specific 15 minute increment supported by a Provider).
@@ -69,6 +71,13 @@ Here is how those states are represented in the database:
 - State: Appt Slot Confirmed -- there is a row in `[Provider].[AppointmentSlot]`, `[Client].[PendingReservationAppointmentSlot]`, and `[Client].[ConfirmedAppointmentSlot]`
 
 # .NET Projects
+The .NET projects used for this solution work in a layered fashion.  
+- API layer simply provides the plumbing for getting the DTOs to the business layer.
+- The BusinessLayer performs the bulk of the business logic and has unit testing.
+- The DataAccessLayer provides abstracted access to the datastore (database).
+- The DataContract projects provide DTOs that can be used across layers and also on website and phone applications.
+
+Here are the specific projects:
 * `AwesomeMeds.Providers.BusinessLayer` - Business level workflows to facilitate Provider User Stories
 * `AwesomeMeds.Providers.BusinessLayer.Test` - Tests for `AwesomeMeds.Providers.BusinessLayer`
 * `AwesomeMeds.Providers.DataAccessLayer` - Abstracted access to Provider data stores (the database)
@@ -187,20 +196,71 @@ Exercise this endpoint `PUT - https://localhost:44381/Provider/appointment-slots
 }
 ```
 ### Test 2 Verification
-Verfiy: Exercise this endpoint `GET https://localhost:7258/Client` and verify that 24 results are returned.  Note that Providers 33333333-3333-3333-3333-333333333333 and 44444444-4444-4444-4444-444444444444 had overlapping times, and the Client would only need to know that at least 1 provider is available.
+Verfiy: Exercise this endpoint `GET https://localhost:7258/Client/appointment-slots` and verify that 24 results are returned.  Note that Providers 33333333-3333-3333-3333-333333333333 and 44444444-4444-4444-4444-444444444444 had overlapping times, and the Client would only need to know that at least 1 provider is available.
 
 
 ## Testing User Stories - As a Client, I can view available appointment slots within a time window that is at least 24 hours into the future
 
 ### Test 3
-Exercise this endpoint `GET https://localhost:7258/Client`
+Exercise this endpoint `GET https://localhost:7258/Client/appointment-slots`
 
 ### Test 3 Verification
 Verify that 24 results are returned. Note that Providers 33333333-3333-3333-3333-333333333333 and 44444444-4444-4444-4444-444444444444 had overlapping times, and the Client would only need to know that at least 1 provider is available.
 
 ## Testing User Stories - As a Client, I can reserve an appointment slot
 
+### Test 4
+Test 4 reserves an appt, but it is not confirmed.
+Exercise this endpoint `POST https://localhost:7258/Client/appointment-slots/reserve` to reserve an appointment
+```json
+{
+  "clientID": "11111111-1111-1111-1111-111111111111",
+  "appointmentSlot": {
+    "year": 2024,
+    "month": 1,
+    "day": 1,
+    "hour": 8,
+    "quarterHourSegment": 0
+  }
+}
 
+```
+
+
+### Test 4 Verification
+Verfiy: Execute this SQL `SELECT * FROM [AwesomeMeds].[Client].[PendingReservationAppointmentSlot] WHERE [ClientID] = '11111111-1111-1111-1111-111111111111'` and see that the expected data is returned.  Note the times will be different
+
+|ProviderID                           |Year|Month|Day|Hour|QuarterHourSegment|ClientID                            |ReservationCreatedUTC  |ReservationConfirmedByUTC|
+|-------------------------------------|----|-----|---|----|------------------|------------------------------------|-----------------------|-------------------------|
+|33333333-3333-3333-3333-333333333333 |2024|1    |1  |8   |0                 |11111111-1111-1111-1111-111111111111|2023-10-25 04:35:27.210|2023-10-25 05:05:27.210  |
+
+## Testing User Stories - As a Client, I can confirm an appointment reservation
+
+### Test 5
+Test 5 confirms a reserved appt.
+Exercise this endpoint `POST https://localhost:7258/Client/appointment-slots/confirm` to confirm an appointment
+```json
+{
+  "clientID": "11111111-1111-1111-1111-111111111111",
+  "appointmentSlot": {
+    "year": 2024,
+    "month": 1,
+    "day": 1,
+    "hour": 8,
+    "quarterHourSegment": 0
+  }
+}
+```
+### Test 5 Verification
+Verfiy: Execute this SQL `SELECT * FROM [AwesomeMeds].[Client].[ConfirmedAppointmentSlot] WHERE [ClientID] = '11111111-1111-1111-1111-111111111111'` and see that the expected data is returned.  Note the times will be different
+
+|ProviderID                           |Year|Month|Day|Hour|QuarterHourSegment|ClientID                            |ReservationCreatedUTC  |ReservationConfirmedByUTC|ReservationConfirmedUTC|
+|-------------------------------------|----|-----|---|----|------------------|------------------------------------|-----------------------|-------------------------|-----------------------|
+|33333333-3333-3333-3333-333333333333 |2024|1    |1  |8   |0                 |11111111-1111-1111-1111-111111111111|2023-10-25 04:35:27.210|2023-10-25 05:05:27.210  |2023-10-25 04:49:14.150|
+
+# Future Considerations
+Here are changes you would want to make to this system to allow it to operate smoothly in the future.
+- Archive old data from `[Provider].[AppointmentSlot]`, `[Client].[PendingReservationAppointmentSlot]`, and `[Client].[ConfirmedAppointmentSlot]` tables so the SQL database is not bogged down looking at older data.
 
 # Note about Exception Handling
 For expediency I am throwing exceptions and wrapping all the top level API calls in try/catch blocks.  Normally we could avoid exceptions for many circumstances (eg. bad data coming in from the API) that can be covered with branching logic and proper defensive coding, and provide more elegant loging and reporting to provide feedback to the system maintainers and the applications that send requests to the APIs. But for this exercise with time considerations, we will throw exceptions at any level of the code and catch them in the controllers to be logged and avoid leaking sensitive details to the applications which could increase an attacker's ability to gain knowledge about the system.
